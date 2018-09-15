@@ -4,6 +4,7 @@ import {welcomePage} from '../actions/actions';
 import { connect } from 'react-redux';
 import { Input, Button } from 'react-bootstrap';
 import SignIn from './SignIn';
+import { GoogleLogin } from 'react-google-login-component';
 
 class WelcomePage extends Component {
 
@@ -25,6 +26,19 @@ class WelcomePage extends Component {
       this.setState({ username: event.target.value });
     }
   }
+  responseGoogle (googleUser) {
+    var id_token = googleUser.getAuthResponse().id_token;
+    var googleId = googleUser.getId();
+    
+    console.log({ googleId });
+    console.log({accessToken: id_token});
+
+     const { dispatch } = this.props;
+    const username = this.state.username;
+    dispatch(welcomePage(username));
+    this.setState({ username: '' });
+    //anything else you want to do(save to localStorage)...
+  }
   handleSubmit() {
     const { dispatch } = this.props;
     const username = this.state.username;
@@ -42,6 +56,12 @@ class WelcomePage extends Component {
           </header>
           <main>
           <form>
+          <GoogleLogin socialId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
+                     className="google-login"
+                     scope="profile"
+                     fetchBasicProfile={true}
+                     responseHandler={this.responseGoogle}
+                     buttonText="Login With Google"/>
           <Input
             style={{height: '2.7em', fontSize: '1.3em', width: '100%'}}
             ref="usernameInput"
