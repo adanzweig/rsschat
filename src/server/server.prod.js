@@ -81,7 +81,6 @@ app.get('/*', function(req, res) {
       <Provider className="root" store={store}>
         <div style={{height: '100%'}}>
           <RouterContext {...renderProps} />
-          // {process.env.NODE_ENV !== 'production' && <DevTools />}
         </div>
       </Provider>
     );
