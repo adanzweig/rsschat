@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Input, Button } from 'react-bootstrap';
 import FBSignIn from './FBSignIn';
 import SignIn from './SignIn';
-import GoogleLogin from 'react-google-login';
 
 class WelcomePage extends Component {
 
@@ -33,10 +32,7 @@ class WelcomePage extends Component {
     this.setState({ username: '' });
   }
   render() {
-    const responseGoogle = (response) => {
-      console.log(response);
-    }
-
+  
     const {screenWidth} = this.props;
     if(screenWidth < 500) {
       return (
@@ -55,12 +51,6 @@ class WelcomePage extends Component {
             placeholder="Enter username"
             onChange={::this.handleChange}
           />
-          <GoogleLogin
-    clientId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
-    buttonText="Login"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
-  />
             <Link to="/signup">
               <Button
                 bsStyle="success"
