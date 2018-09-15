@@ -98,7 +98,7 @@ app.get('/*', function(req, res) {
   })
 })
 
-const server = app.listen(process.env.PORT, 'localhost', function(err) {
+const server = app.listen(process.env.PORT, 'https://rrschat.herokuapp.com', function(err) {
   if (err) {
     console.log(err);
     return;
@@ -126,7 +126,7 @@ function renderFullPage(html, initialState) {
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
         </script>
-        <script src="/bundle.js"></script>
+        <script src="/dist/bundle.js"></script>
       </body>
     </html>
   `
