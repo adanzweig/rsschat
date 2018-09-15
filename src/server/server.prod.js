@@ -12,14 +12,19 @@ import configureStore from '../common/store/configureStore'
 import { RouterContext, match } from 'react-router';
 import routes from '../common/routes';
 import createHistory from 'history/createMemoryHistory'
-import cors from 'cors';
 
+
+import DevTools from '../common/containers/DevTools';
+
+import cors from 'cors';
+import webpack from 'webpack';
+import webpackConfig from '../../webpack.config.prod'
+const compiler = webpack(webpackConfig);
 import User from './models/User.js';
 import passport from 'passport';
 require('../../config/passport')(passport);
 import SocketIo from 'socket.io';
 const app = express();
-
 //set env vars
 process.env.MONGOLAB_URI = process.env.MONGOLAB_URI || 'mongodb://chatdb:yYLLCP28Febbupg@ds257752.mlab.com:57752/chat_dev';
 process.env.PORT = process.env.PORT || 4000;
@@ -30,9 +35,14 @@ mongoose.connect(process.env.MONGOLAB_URI);
 process.on('uncaughtException', function (err) {
   console.log(err);
 });
-
 app.use(cors());
 app.use(passport.initialize());
+
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: webpackConfig.output.publicPath
+}));
+app.use(require('webpack-hot-middleware')(compiler));
 
 //load routers
 const messageRouter = express.Router();
@@ -45,13 +55,19 @@ app.use('/api', messageRouter);
 app.use('/api', usersRouter);
 app.use('/api', channelRouter);
 
-app.use('/', express.static(path.join(__dirname, '../..', 'static')));
+app.use('/', express.static(path.join(__dirname, '..', 'static')));
 
 app.get('/*', function(req, res) {
   const history = createHistory()
   const location = history.location
-
   match({ routes, location }, (err, redirectLocation, renderProps) => {
+
+    const store = configureStore();
+    // console.log(redirectLocation);
+    // if(redirectLocation) {
+    //   return res.status(302).end(redirectLocation);
+    // }
+
 
     if(err) {
       console.error(err);
@@ -61,20 +77,18 @@ app.get('/*', function(req, res) {
     if(!renderProps) {
       return res.status(404).end('Not found');
     }
-
-    const store = configureStore();
-
     const InitialView = (
       <Provider className="root" store={store}>
         <div style={{height: '100%'}}>
           <RouterContext {...renderProps} />
+          {process.env.NODE_ENV !== 'production' && <DevTools />}
         </div>
       </Provider>
     );
 
-    const initialState = store.getState();
+    const finalState = store.getState();
     const html = renderToString(InitialView)
-    res.status(200).end(renderFullPage(html, initialState));
+    res.status(200).end(renderFullPage(html, finalState));
   })
 })
 
@@ -91,7 +105,7 @@ const socketEvents = require('./socketEvents')(io);
 
 function renderFullPage(html, initialState) {
   return `
-  <!doctype html>
+    <!doctype html>
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />

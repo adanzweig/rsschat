@@ -12,7 +12,10 @@ import configureStore from '../common/store/configureStore'
 import { RouterContext, match } from 'react-router';
 import routes from '../common/routes';
 import createHistory from 'history/createMemoryHistory'
+
+
 import DevTools from '../common/containers/DevTools';
+
 import cors from 'cors';
 import webpack from 'webpack';
 import webpackConfig from '../../webpack.config.dev'
@@ -52,22 +55,13 @@ app.use('/api', messageRouter);
 app.use('/api', usersRouter);
 app.use('/api', channelRouter);
 
-app.use('/', express.static(path.join(__dirname, 'static')));
+app.use('/', express.static(path.join(__dirname, '..', 'static')));
 
 app.get('/*', function(req, res) {
   const history = createHistory()
   const location = history.location
   match({ routes, location }, (err, redirectLocation, renderProps) => {
 
-    const initialState = {
-      auth: {
-        user: {
-          username: 'tester123',
-          id: 0,
-          socketID: null
-        }
-      }
-    }
     const store = configureStore();
     // console.log(redirectLocation);
     // if(redirectLocation) {
