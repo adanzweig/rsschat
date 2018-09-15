@@ -1,0 +1,212 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Abel|Montserrat');
+
+
+html,body {
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
+  width: 100%;
+  margin : 0px;
+  padding : 0px;
+}
+a {
+  text-decoration: none;
+}
+
+html,
+body,
+container {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.react {
+  height: 100%;
+}
+
+.nav {
+  margin: 0;
+  color: white;
+  background: #000;
+  width: 21rem;
+-ms-flex: 0 1rem;
+-webkit-box-flex:  0;
+-moz-box-flex:  0;
+-ms-box-flex:  0;
+box-flex:  0;
+display: flex;
+justify-content: flex-start;
+-webkit-box-orient: vertical;
+-moz-box-orient: vertical;
+-webkit-box-direction: normal;
+-moz-box-direction: normal;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+}
+
+.main {
+  margin: 0;
+  background: #eee;
+ -ms-flex: 1;
+ -webkit-box-flex: 1;
+ -moz-box-flex: 1;
+ -ms-box-flex: 1;
+ box-flex: 1;
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-start;
+ align-content: flex-start;
+ align-items: inherit;
+}
+.gifbox{
+  height: 200px;
+  width : 100%;
+  border-left: 1px solid #e9ebee;
+
+}
+.gifs{
+  height: 250px !important;
+  overflow-y : scroll;
+      padding: 5px;
+}
+
+.gif{
+  position:relative;
+  display: inline-block;
+  float:left;
+  margin-right: 5px;
+  padding-bottom: 5px;
+}
+.gif:hover, .gif .share{
+    display: block;
+}
+
+span[class*="glyphicon-one-fine"] {
+    padding-top: 0.46em;
+    padding-right: 0.4em;
+}
+
+.glyphicon-one-fine-green-dot:before {
+    content:"\25cf";
+    font-size: 0.7em;
+    color: #34A853;
+}
+
+.glyphicon-one-fine-empty-dot:before {
+    content:"\25cb";
+    font-size: 0.7em;
+}
+
+.btn-primary {
+  border: none;
+}
+
+
+
+#root{
+  position:relative;
+  height: 100%;
+  width: 100%;
+  padding-top: 56px;
+}
+
+  .enter-chat{
+    display: block;
+    position:relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .chat{
+    display: block;
+    position:relative;
+    height: 100%;
+    width: 100%;
+}
+    .users, .messages{
+      padding: 0px;
+      float: left;
+    }
+
+
+      .user{
+        border-bottom : 1px solid #e9ebee;
+        padding: 10px;
+}
+        .fa-user{
+          color :#343a40;
+        }
+ 
+    .messages{
+      border-left: 1px solid #e9ebee;
+      overflow:auto;
+}
+      .message{
+        padding: 10px;
+        display: block;
+        min-height: 50px;
+        height : auto !important;
+        clear:both;
+}
+        .username, .data{
+          display: inline-block;
+          float:left;
+          margin-right: 10px;
+        }
+      
+
+      .no-message{
+        margin: 10px;
+      
+    }
+
+    .chatbox, .gifbox{
+      /*position:fixed;*/
+      bottom: 0px;
+      padding: 0px;
+    }
+.gifButton{
+      /*float: right;
+    margin-top: -50px;*/
+}
+    
+     
+        
+
+          .share{
+            position:absolute;
+            top:0;
+            right:0;
+            bottom:0;
+            left:0;
+            margin:auto;
+            height: 30px;
+            width: 30px;
+            font-size: 30px;
+            cursor: pointer;
+            color:white;
+            display: none;
+          }
+        
+
+        .searching{
+          display: block;
+          color:grey;
+          font-size: 18px;
+        }
+      .RTdSn {
+    position: absolute!important;
+    margin-top: -370px;
+    right: 0;
+}
+.main ul{
+      padding-left: 40px;
+}
+.main ul li{
+  list-style: none;
+}
+.btn-primary{
+  background-color:#000;
+}
