@@ -14,7 +14,7 @@ import routes from '../common/routes';
 import createHistory from 'history/createMemoryHistory'
 
 
-import DevTools from '../common/containers/DevTools';
+// import DevTools from '../common/containers/DevTools';
 
 import cors from 'cors';
 import webpack from 'webpack';
@@ -81,7 +81,7 @@ app.get('/*', function(req, res) {
       <Provider className="root" store={store}>
         <div style={{height: '100%'}}>
           <RouterContext {...renderProps} />
-          {process.env.NODE_ENV !== 'production' && <DevTools />}
+          // {process.env.NODE_ENV !== 'production' && <DevTools />}
         </div>
       </Provider>
     );
