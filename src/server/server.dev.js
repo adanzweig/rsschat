@@ -110,8 +110,7 @@ const io = new SocketIo(server, {path: '/api/chat'})
 const socketEvents = require('./socketEvents')(io);
 
 function renderFullPage(html, initialState) {
-  return `
-    <!doctype html>
+  return `<!doctype html>
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
