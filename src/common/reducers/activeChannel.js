@@ -2,7 +2,7 @@ import { CHANGE_CHANNEL } from '../constants/ActionTypes';
 
 const initialState = {
   name: 'Lobby',
-  id: 0,
+  key: 0,
   between: [],
   owner: ''
 };
@@ -12,7 +12,7 @@ export default function activeChannel(state = initialState, action) {
   case CHANGE_CHANNEL:
     return {
       name: action.channel.name,
-      id: action.channel.id,
+      key: action.channel.key,
       between: action.channel.between,
       owner: action.channel.owner
     };

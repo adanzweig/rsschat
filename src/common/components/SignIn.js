@@ -52,11 +52,11 @@ class SignIn extends Component {
   render() {
     return (
       <div>
-        <header style={{display: 'flex', justifyContent: 'center', background: '#000000', color: '#FFFFFF', flexGrow: '0', order: '0'}}>
+        <header style={{display: 'flex', justifyContent: 'center', background: '#000000', color: '#FFFFFF', flexGrow: '0', order: '0',fontSize:'40px'}}>
           Sign In to Chat
         </header>
         <main style={{display: 'flex', justifyContent: 'center'}}>
-          <form onSubmit={::this.handleSubmit}>
+          <form onSubmit={::this.handleSubmit} className="signin">
             <Input
               label="Username"
               ref="usernameInput"

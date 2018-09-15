@@ -12,6 +12,7 @@ export default class Channels extends Component {
     channels: PropTypes.array.isRequired,
     allChannels: PropTypes.array.isRequired,
     user: PropTypes.object.isRequired,
+    auth:PropTypes.object.isRequired,
     onClick: PropTypes.func.isRequired,
     messages: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired
@@ -30,7 +31,7 @@ export default class Channels extends Component {
     // if (this.state.channelName.length < 1) {
     //   this.refs.channelName.getInputDOMNode().focus();
     // }
-    dispatch(actions.joinChannel(user.username,channel.id));
+    dispatch(actions.joinChannel(user.username,channel.key));
       this.handleChangeChannel(channel);
       socket.emit('join room', channel);
       this.setState({channelName: ''});
@@ -75,6 +76,7 @@ export default class Channels extends Component {
       const newChannel = {
         name: this.state.channelName.trim(),
         id: `${Date.now()}${uuid.v4()}`,
+        key: `${Date.now()}${uuid.v4()}`,
         private: false,
         owner: user.username,
         between:[user.username]
@@ -111,7 +113,7 @@ export default class Channels extends Component {
   }
   deleteChannel(channel){
   const { allChannels,channels, dispatch, socket, user } = this.props;
-    dispatch(actions.deleteChannel(channel.id));
+    dispatch(actions.deleteChannel(channel.key));
     dispatch(actions.fetchChannels(user.username));
     console.log(channels);
     console.log(allChannels);
@@ -120,7 +122,7 @@ export default class Channels extends Component {
     socket.emit('room deleted', channel);
   }
   render() {
-    const { channels, messages,allChannels,user } = this.props;
+    const { channels, messages, allChannels, user, auth } = this.props;
     const filteredChannels = channels.slice(0, 8);
     const moreChannelsBoolean = channels.length > 8;
     const restOfTheChannels = channels.slice(8);
@@ -135,7 +137,7 @@ export default class Channels extends Component {
               {allChannels.map(channel =>
                 <AllChannelsListItem  style={{paddingLeft: '0.8em', background: '#2E6DA4', height: '0.7em'}} messageCount={messages.filter(msg => {
                   return msg.channelID === channel.name;
-                }).length} channel={channel} key={channel.id} onClick={::this.joinChannel} channels={channels}/>
+                }).length} channel={channel} key={channel.key} onClick={::this.joinChannel} channels={channels}/>
                 )}
             </ul>
           </Modal.Body>
@@ -188,7 +190,7 @@ export default class Channels extends Component {
           <Modal.Body>
             <ul style={{height: 'auto', margin: '0', overflowY: 'auto', padding: '0'}}>
               {restOfTheChannels.map(channel =>
-                <ChannelListModalItem channel={channel} key={channel.id} onClick={::this.handleChangeChannel} />
+                <ChannelListModalItem channel={channel} key={channel.key} onClick={::this.handleChangeChannel} />
                 )}
             </ul>
           </Modal.Body>
@@ -223,7 +225,7 @@ export default class Channels extends Component {
             {filteredChannels.map(channel =>
               <ChannelListItem  style={{paddingLeft: '0.8em', background: '#2E6DA4', height: '0.7em'}} messageCount={messages.filter(msg => {
                 return msg.channelID === channel.name;
-              }).length} channel={channel} key={channel.id} onClick={::this.handleChangeChannel}  deleteChannel={::this.deleteChannel} user={user} />
+              }).length} channel={channel} key={channel.key} onClick={::this.handleChangeChannel}  deleteChannel={::this.deleteChannel} user={user} />
               )}
           </ul>
           {moreChannelsBoolean && <a onClick={::this.openMoreChannelsModal} style={{'cursor': 'pointer', 'color': '#85BBE9'}}> + {channels.length - 8} more...</a>}

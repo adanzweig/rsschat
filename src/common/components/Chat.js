@@ -5,6 +5,7 @@ import Channels from './Channels';
 import * as actions from '../actions/actions';
 import * as authActions from '../actions/authActions';
 import TypingListItem from './TypingListItem';
+
 import { Modal, DropdownButton, MenuItem, Button, Navbar, NavDropdown, Nav, NavItem } from 'react-bootstrap';
 
 export default class Chat extends Component {
@@ -49,6 +50,7 @@ export default class Chat extends Component {
     socket.on('receive private channel', channel =>
       dispatch(actions.receiveRawChannel(channel))
     );
+    
   }
   componentDidUpdate() {
     const messageList = this.refs.messageList;
@@ -95,7 +97,7 @@ export default class Chat extends Component {
     if (user.username !== this.state.targetedUser.username && doesPrivateChannelExist.length === 0) {
       const newChannel = {
         name: `${this.state.targetedUser.username}+${user.username}`,
-        id: Date.now(),
+        key: Date.now(),
         private: true,
         between: [this.state.targetedUser.username, user.username]
       };

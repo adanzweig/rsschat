@@ -51,12 +51,7 @@ class SignUp extends Component {
         confirmPassword: this.state.confirmPassword
       };
       dispatch(authActions.signUp(userObj))
-      const initLobby = {
-        name: "Lobby",
-        id: 0,
-        private: false
-      };
-      dispatch(actions.createChannel(initLobby));
+      dispatch(actions.joinChannel(userObj.username,0))
       this.setState({ username: '', password: '', confirmPassword: ''});
     }
   }
@@ -91,11 +86,11 @@ class SignUp extends Component {
   render() {
     return (
       <div>
-        <header style={{display: 'flex', justifyContent: 'center', background: '#000000', color: '#FFFFFF', flexGrow: '0', order: '0'}}>
+        <header style={{display: 'flex', justifyContent: 'center', background: '#000000', color: '#FFFFFF', flexGrow: '0', order: '0',fontSize:'40px'}}>
         Sign Up
         </header>
         <main style={{display: 'flex', justifyContent: 'center'}}>
-          <form onSubmit={::this.handleSubmit} >
+          <form onSubmit={::this.handleSubmit} className="signup">
             <section style={{height: '6em'}}>
               <Input
                 label="Username"

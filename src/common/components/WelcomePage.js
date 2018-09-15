@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import {welcomePage} from '../actions/actions';
 import { connect } from 'react-redux';
 import { Input, Button } from 'react-bootstrap';
-import FBSignIn from './FBSignIn';
 import SignIn from './SignIn';
 
 class WelcomePage extends Component {
@@ -19,6 +18,7 @@ class WelcomePage extends Component {
   }
   componentDidMount() {
     this.refs.usernameInput.getInputDOMNode().focus();
+
   }
   handleChange(event) {
     if (event.target.name === 'username') {
@@ -81,7 +81,7 @@ class WelcomePage extends Component {
           <form style={{height: '20rem', display: 'flex', justifyContent: 'center'}}>
             <div style={{margin: 'auto', paddingRight: '0.2em', height: '3.5em'}}>
               <Input
-                style={{height: '2.7em', fontSize: '1.3em'}}
+                style={{height: '2.7em', fontSize: '1.3em',display:'none'}}
                 ref="usernameInput"
                 type="text"
                 name="username"

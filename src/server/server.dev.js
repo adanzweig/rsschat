@@ -68,7 +68,7 @@ app.get('/*', function(req, res) {
         }
       }
     }
-    const store = configureStore(initialState);
+    const store = configureStore();
     // console.log(redirectLocation);
     // if(redirectLocation) {
     //   return res.status(302).end(redirectLocation);
@@ -110,7 +110,8 @@ const io = new SocketIo(server, {path: '/api/chat'})
 const socketEvents = require('./socketEvents')(io);
 
 function renderFullPage(html, initialState) {
-  return `<!doctype html>
+  return `
+    <!doctype html>
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
@@ -125,6 +126,7 @@ function renderFullPage(html, initialState) {
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
         </script>
+        <script src="/dist/bundle.js"></script>
       </body>
     </html>
   `

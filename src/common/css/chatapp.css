@@ -210,3 +210,10 @@ span[class*="glyphicon-one-fine"] {
 .btn-primary{
   background-color:#000;
 }
+.signup,.signin{
+      background: #ccc;
+    padding: 20px 100px;
+    border-top: 0;
+    color: #666;
+    margin-top: 40px;
+}

@@ -8,7 +8,7 @@ const AllChannelsListItem = (props) => {
   const { channel: selectedChannel, onClick, channel,deleteChannel,channels } = props;
   return (
     <span>
-  {channels.find(c => c.id === channel.id)? (<span></span>):(
+  {channels.find(c => c.key === channel.key)? (<span></span>):(
     <Button bsSize="xsmall" bsStyle="primary" >
       <a className={classnames({ selected: channel === selectedChannel })}
          style={{ cursor: 'hand', color: 'white'}}

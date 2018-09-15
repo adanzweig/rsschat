@@ -18,7 +18,7 @@ const initialState = {
   loaded: false,
   user: {
     username: null,
-    id: null,
+    key: null,
     socketID: null
   }
 };
@@ -55,7 +55,7 @@ export default function auth(state = initialState, action = {}) {
       signingIn: false,
       user: {
         username: action.user.name,
-        id: action.user.id
+        key: action.user.key
       }
     };
   case AUTH_SIGNIN_FAIL:
@@ -64,7 +64,7 @@ export default function auth(state = initialState, action = {}) {
       signingIn: false,
       user: {
         username: null,
-        id: null
+        key: null
       },
       signInError: action.error
     };
@@ -79,7 +79,7 @@ export default function auth(state = initialState, action = {}) {
       signingUp: false,
       user: {
         username: action.newUser.name,
-        id: action.newUser.id,
+        key: action.newUser.key,
         socketID: null
       }
     };
@@ -88,7 +88,7 @@ export default function auth(state = initialState, action = {}) {
       ...state,
       user: {
         username: null,
-        id: null
+        key: null
       }
     };
   case AUTH_SIGNOUT:
@@ -102,7 +102,7 @@ export default function auth(state = initialState, action = {}) {
       signingOut: false,
       user: {
         username: null,
-        id: null
+        key: null
       }
     };
   case AUTH_SIGNOUT_FAIL:

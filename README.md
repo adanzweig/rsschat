@@ -5,7 +5,7 @@
 ![alt tag](./static/image_3.png)
 ![alt tag](./static/image_4.png)
 ![alt tag](./static/image_5.png)
-To see the live version of the app go to http://rrschat.herokuapp.com
+To see the live version of the app go to https://rrschat.herokuapp.com
 
 ## Use Guide
 
@@ -37,7 +37,7 @@ And then point your browser to `localhost:4000`
 
 
 ### TODOs
-Mount Https for google-login + fb-login
+Mount Https for google-login
 
 
 ### Implementation explanantion
@@ -47,7 +47,7 @@ Backend: NodeJs+Express
 Database: Mongodb (mLab)
 Frontend: React+Redux+Bootstrapp
 Connection: Socket.IO
-Extras: Giphy+Google Login + Facebook Login
+Extras: Giphy
 
 ### Implemenation time logs
 Environment Setup: 3hs

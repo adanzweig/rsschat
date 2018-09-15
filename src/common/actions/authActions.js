@@ -12,6 +12,7 @@ export function receiveAuth() {
 }
 
 export function checkAuth() {
+  console.log("checkAuth");
   if (cookie.load('username')) {
     return true;
   }

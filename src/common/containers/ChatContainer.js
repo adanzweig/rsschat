@@ -5,19 +5,25 @@ import Chat from '../components/Chat';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
-
+import cookie from 'react-cookie';
 const socket = io('', { path: '/api/chat' });
 const initialChannel = 'Lobby'; // NOTE: I hard coded this value for my example.  Change this as you see fit
 
 class ChatContainer extends Component {
   componentDidMount() {
-    const { dispatch, user } = this.props;
+    const { dispatch, user, auth } = this.props;
+
+    const user2 = cookie.load('username');
+    
     if(!user.username) {
       dispatch(receiveAuth());
     }
+    
+
     dispatch(actions.fetchMessages(initialChannel));
-    dispatch(actions.fetchChannels(user.username));
+    dispatch(actions.fetchChannels(user2));
     dispatch(actions.fetchAllChannels());
+    
   }
   render() {
     return (
