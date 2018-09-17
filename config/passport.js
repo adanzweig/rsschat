@@ -62,7 +62,6 @@ passport.use('google-login', new LocalStrategy({
     User.findOne({ 'local.username': username}, function(err, user) {
       if (err) {
         console.log('err',err);
-        });
       }
       if (!user) {
         var newUser = new User();
@@ -75,6 +74,7 @@ passport.use('google-login', new LocalStrategy({
             throw err2;
           }
           return done(null, newUser);
+        });
       }
       console.log('endlogged',user);
       return done(null, user);
