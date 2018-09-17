@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Input, Button } from 'react-bootstrap';
 import SignIn from './SignIn';
 import GoogleLoginButton from 'react-google-login-button'
-
+import * as authActions from '../actions/authActions';
 
 class WelcomePage extends Component {
 
@@ -17,10 +17,6 @@ class WelcomePage extends Component {
     this.state = {
       username: ''
     };
-  }
-  componentDidMount() {
-    this.refs.usernameInput.getInputDOMNode().focus();
-
   }
   handleChange(event) {
     if (event.target.name === 'username') {
