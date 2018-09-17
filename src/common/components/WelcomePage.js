@@ -4,7 +4,8 @@ import {welcomePage} from '../actions/actions';
 import { connect } from 'react-redux';
 import { Input, Button } from 'react-bootstrap';
 import SignIn from './SignIn';
-import { GoogleLogin } from 'react-google-login-component';
+import GoogleLoginButton from 'react-google-login-button'
+
 
 class WelcomePage extends Component {
 
@@ -37,7 +38,15 @@ class WelcomePage extends Component {
     const username = this.state.username;
     dispatch(welcomePage(username));
     this.setState({ username: '' });
-    //anything else you want to do(save to localStorage)...
+
+      // const userObj = {
+      //   username: this.state.username,
+      //   password: this.state.password,
+      //   confirmPassword: this.state.confirmPassword
+      // };
+      // dispatch(authActions.signUp(userObj))
+      // dispatch(actions.joinChannel(userObj.username,0))
+
   }
   handleSubmit() {
     const { dispatch } = this.props;
@@ -56,12 +65,14 @@ class WelcomePage extends Component {
           </header>
           <main>
           <form>
-          <GoogleLogin socialId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
-                     className="google-login"
-                     scope="profile"
-                     fetchBasicProfile={true}
-                     responseHandler={this.responseGoogle}
-                     buttonText="Login With Google"/>
+          <GoogleLoginButton googleClientId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
+                     onLoginSuccess={this.responseGoogle}
+                     onLoginFailure={() => console.log('Login failed')}
+                     width={140}
+                      height={40}
+                      longTitle={false}
+                      theme="light"
+                     />
           <Input
             style={{height: '2.7em', fontSize: '1.3em', width: '100%'}}
             ref="usernameInput"

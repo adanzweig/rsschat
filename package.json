@@ -78,6 +78,7 @@
     "react-dom": "^0.14.6",
     "react-emojipicker": "^1.0.3",
     "react-google-login": "^3.2.1",
+    "react-google-login-button": "^1.0.2",
     "react-google-login-component": "^0.9.3",
     "react-hot-loader": "^1.2.7",
     "react-redux": "^3.0.1",
