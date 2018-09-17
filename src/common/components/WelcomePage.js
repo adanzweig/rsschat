@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Input, Button } from 'react-bootstrap';
 import SignIn from './SignIn';
 import GoogleLoginButton from 'react-google-login-button'
+import * as actions from '../actions/actions';
 import * as authActions from '../actions/authActions';
 
 class WelcomePage extends Component {
