@@ -60,19 +60,24 @@ passport.use('google-login', new LocalStrategy({
   function(req, username, password, done) {
     User.findOne({ 'local.username': username}, function(err, user) {
       if (err) {
+        console.log('err',err);
         var newUser = new User();
         newUser.local.username = username;
         newUser.local.password = newUser.generateHash(password);
-        newUser.save(function(err, user) {
-          if (err) {
-            throw err;
+        newUser.save(function(err2, user) {
+
+          if (err2) {
+            console.log('err2',err2);
+            throw err2;
           }
           return done(null, newUser);
         });
       }
       if (!user) {
+        console.log("false");
         return done(null, false);
       }
+      console.log('endlogged',user);
       return done(null, user);
     });
   }));

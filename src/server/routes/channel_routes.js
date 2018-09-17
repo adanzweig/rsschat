@@ -49,7 +49,7 @@ module.exports = function(router) {
           return res.status(500).json({msg: 'internal server error'});
         }
         var between = data.between;
-        between.indexOf(req.params.user) === -1 ? between.push(req.params.user) : console.log('ya esta');
+        between.indexOf(req.params.user) === -1 ? between.push(req.params.user) : console.log('already there');
       Channel.update({key:req.params.channel},{between:between},function(err,data){
         if(err) {
           console.log(err);
