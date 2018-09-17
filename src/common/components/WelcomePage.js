@@ -68,28 +68,34 @@ class WelcomePage extends Component {
           </header>
           <main>
           <form>
-          <GoogleLoginButton 
-                googleClientId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
-                     onLoginSuccess={this.responseGoogle}
-                     onLoginFailure={() => console.log('Login failed')}
-                     width={140}
-                      height={40}
-                      longTitle={false}
-                      theme="light"/>
-            <Link to="/signup">
-              <Button
-                bsStyle="success"
-                style={{width: '100%'}}
-                type="submit"
-                onClick={::this.handleSubmit}>
-                  <p style={{margin: '0', padding: '0', fontSize: '1.5em'}}>Sign Up</p>
-              </Button>
-            </Link>
+          <div className="col-xs-4">
+            <GoogleLoginButton 
+                  googleClientId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
+                       onLoginSuccess={this.responseGoogle}
+                       onLoginFailure={() => console.log('Login failed')}
+                       width={140}
+                        height={40}
+                        longTitle={false}
+                        theme="light"/>
+            </div>
+            <div className="col-xs-4">
+              <Link to="/signup">
+                <Button
+                  bsStyle="success"
+                  style={{width: '100%'}}
+                  type="submit"
+                  onClick={::this.handleSubmit}>
+                    <p style={{margin: '0', padding: '0', fontSize: '1.5em'}}>Sign Up</p>
+                </Button>
+              </Link>
+            </div>
+            <div className="col-xs-4">
+              <p style={{margin: '1em', textAlign: 'center'}}>Or</p>
+              <Link to="/signin">
+                <Button style={{width: '100%'}} bsStyle="default" >Sign in</Button>
+              </Link>
+            </div>
             </form>
-            <p style={{margin: '1em', textAlign: 'center'}}>Or</p>
-            <Link to="/signin">
-              <Button style={{width: '100%'}} bsStyle="default" >Sign in</Button>
-            </Link>
           </main>
         </div>
       );
@@ -104,7 +110,7 @@ class WelcomePage extends Component {
         <main style={{display: 'flex', justifyContent: 'center'}}>
 
           <form style={{height: '20rem', display: 'flex', justifyContent: 'center'}}>
-            <div style={{margin: 'auto', paddingRight: '0.2em', height: '3.5em'}}>
+            <div className="col-xs-4">
               <GoogleLoginButton 
                 googleClientId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
                      onLoginSuccess={this.responseGoogle}
@@ -114,24 +120,27 @@ class WelcomePage extends Component {
                       longTitle={false}
                       theme="light"/>
             </div>
-            <section style={{margin: 'auto', width: '12em', height: '3.5em'}}>
-              <Link to="/signup">
-                <Button
-                  bsStyle="success"
-                  style={{margin: 'auto', width: '12em', height: '3.5em'}}
-                  type="submit"
-                  onClick={::this.handleSubmit}>
-                    <p style={{margin: '0', padding: '0', fontSize: '1.5em'}}>Sign Up</p>
-                </Button>
+            <div className="col-xs-4">
+              <section style={{margin: 'auto', width: '12em', height: '3.5em'}}>
+                <Link to="/signup">
+                  <Button
+                    bsStyle="success"
+                    style={{margin: 'auto', width: '12em', height: '3.5em'}}
+                    type="submit"
+                    onClick={::this.handleSubmit}>
+                      <p style={{margin: '0', padding: '0', fontSize: '1.5em'}}>Sign Up</p>
+                  </Button>
+                </Link>
+              </section>
+            </div>
+            <div className="col-xs-4" style={{height: '3.5em', width: '12em', alignSelf: 'center', display: 'flex', marginLeft: '1em'}}>
+              <p style={{marginRight: '1em', marginTop: '1em'}}> Or </p>
+              <Link to="/signin">
+                <Button style={{margin: 'auto', height: '3.5em'}} bsStyle="default" >Sign in</Button>
               </Link>
-            </section>
+            </div>
           </form>
-          <div style={{height: '3.5em', width: '12em', alignSelf: 'center', display: 'flex', marginLeft: '1em'}}>
-            <p style={{marginRight: '1em', marginTop: '1em'}}> Or </p>
-            <Link to="/signin">
-              <Button style={{margin: 'auto', height: '3.5em'}} bsStyle="default" >Sign in</Button>
-            </Link>
-          </div>
+          
         </main>
       </div>
     );
