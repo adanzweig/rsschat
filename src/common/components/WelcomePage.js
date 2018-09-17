@@ -131,7 +131,7 @@ class WelcomePage extends Component {
                 </Link>
               </section>
             </div>
-            <div className="col-xs-4" style={{height: '3.5em', width: '12em', alignSelf: 'center', display: 'flex', marginLeft: '1em'}}>
+            <div className="col-xs-4" style={{height: '3.5em', width: '12em', display: 'flex', marginLeft: '1em'}}>
               <Link to="/signin">
                 <Button style={{margin: 'auto', height: '3.5em'}} bsStyle="default" >
                 <p style={{margin: '0', padding: '0', fontSize: '1.5em'}}>
