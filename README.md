@@ -35,11 +35,6 @@ npm start
 ```
 And then point your browser to `localhost:4000`
 
-
-### TODOs
-Mount Https for google-login
-
-
 ### Implementation explanantion
 
 Environment: Docker
@@ -47,10 +42,11 @@ Backend: NodeJs+Express
 Database: Mongodb (mLab)
 Frontend: React+Redux+Bootstrapp
 Connection: Socket.IO
-Extras: Giphy
+Extras: Giphy + Google login
 
 ### Implemenation time logs
 Environment Setup: 3hs
 Basic configuration + Research: 7hs
 Giphy + Emoji + Channels: 4hs
+Google Login: 2hs
 Design + Details: 4hs
