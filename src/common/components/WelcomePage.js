@@ -91,7 +91,9 @@ class WelcomePage extends Component {
             </div>
             <div className="col-xs-4">
               <Link to="/signin">
-                <Button style={{width: '100%'}} bsStyle="default" >Sign in</Button>
+                <Button style={{width: '100%'}} bsStyle="default" >
+                <p style={{margin: '0', padding: '0', fontSize: '1.5em'}}>Sign in</p>
+                </Button>
               </Link>
             </div>
             </form>
@@ -134,7 +136,11 @@ class WelcomePage extends Component {
             </div>
             <div className="col-xs-4" style={{height: '3.5em', width: '12em', alignSelf: 'center', display: 'flex', marginLeft: '1em'}}>
               <Link to="/signin">
-                <Button style={{margin: 'auto', height: '3.5em'}} bsStyle="default" >Sign in</Button>
+                <Button style={{margin: 'auto', height: '3.5em'}} bsStyle="default" >
+                <p style={{margin: '0', padding: '0', fontSize: '1.5em'}}>
+                Sign in
+                </p>
+                </Button>
               </Link>
             </div>
           </form>
