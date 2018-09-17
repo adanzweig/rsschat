@@ -30,22 +30,24 @@ class WelcomePage extends Component {
   responseGoogle (googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
     var googleId = googleUser.getId();
-    
-    console.log({ googleId });
-    console.log({accessToken: id_token});
+    var profile = googleUser.getBasicProfile();
+      
+    // console.log(googleUser)
+    // console.log({ googleId });
+    // console.log({accessToken: id_token});
 
-     const { dispatch } = this.props;
-    const username = this.state.username;
-    dispatch(welcomePage(username));
-    this.setState({ username: '' });
+    //  const { dispatch } = this.props;
+    // const username = this.state.username;
+    // dispatch(welcomePage(username));
+    // this.setState({ username: '' });
 
-      // const userObj = {
-      //   username: this.state.username,
-      //   password: this.state.password,
-      //   confirmPassword: this.state.confirmPassword
-      // };
-      // dispatch(authActions.signUp(userObj))
-      // dispatch(actions.joinChannel(userObj.username,0))
+      const userObj = {
+        username: profile.getEmail(),
+        password: id_token,
+        confirmPassword: id_token
+      };
+      dispatch(authActions.signGoogle(userObj))
+      dispatch(actions.joinChannel(userObj.username,0))
 
   }
   handleSubmit() {
@@ -65,23 +67,14 @@ class WelcomePage extends Component {
           </header>
           <main>
           <form>
-          <GoogleLoginButton googleClientId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
+          <GoogleLoginButton 
+                googleClientId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
                      onLoginSuccess={this.responseGoogle}
                      onLoginFailure={() => console.log('Login failed')}
                      width={140}
                       height={40}
                       longTitle={false}
-                      theme="light"
-                     />
-          <Input
-            style={{height: '2.7em', fontSize: '1.3em', width: '100%'}}
-            ref="usernameInput"
-            type="text"
-            name="username"
-            value={this.state.username}
-            placeholder="Enter username"
-            onChange={::this.handleChange}
-          />
+                      theme="light"/>
             <Link to="/signup">
               <Button
                 bsStyle="success"
@@ -111,15 +104,14 @@ class WelcomePage extends Component {
 
           <form style={{height: '20rem', display: 'flex', justifyContent: 'center'}}>
             <div style={{margin: 'auto', paddingRight: '0.2em', height: '3.5em'}}>
-              <Input
-                style={{height: '2.7em', fontSize: '1.3em',display:'none'}}
-                ref="usernameInput"
-                type="text"
-                name="username"
-                value={this.state.username}
-                placeholder="Enter username"
-                onChange={::this.handleChange}
-              />
+              <GoogleLoginButton 
+                googleClientId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
+                     onLoginSuccess={this.responseGoogle}
+                     onLoginFailure={() => console.log('Login failed')}
+                     width={140}
+                      height={40}
+                      longTitle={false}
+                      theme="light"/>
             </div>
             <section style={{margin: 'auto', width: '12em', height: '3.5em'}}>
               <Link to="/signup">

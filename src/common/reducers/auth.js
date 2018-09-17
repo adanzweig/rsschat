@@ -5,6 +5,9 @@ import {
   AUTH_SIGNIN,
   AUTH_SIGNIN_SUCCESS,
   AUTH_SIGNIN_FAIL,
+  GOOGLE_AUTH_SIGNIN,
+  GOOGLE_AUTH_SIGNIN_SUCCESS,
+  GOOGLE_AUTH_SIGNIN_FAIL,
   AUTH_SIGNOUT,
   AUTH_SIGNOUT_SUCCESS,
   AUTH_SIGNOUT_FAIL,
@@ -59,6 +62,30 @@ export default function auth(state = initialState, action = {}) {
       }
     };
   case AUTH_SIGNIN_FAIL:
+    return {
+      ...state,
+      signingIn: false,
+      user: {
+        username: null,
+        key: null
+      },
+      signInError: action.error
+    };
+  case GOOGLE_AUTH_SIGNIN:
+    return {
+      ...state,
+      signingIn: true
+    };
+  case GOOGLE_AUTH_SIGNIN_SUCCESS:
+    return {
+      ...state,
+      signingIn: false,
+      user: {
+        username: action.user.name,
+        key: action.user.key
+      }
+    };
+  case GOOGLE_AUTH_SIGNIN_FAIL:
     return {
       ...state,
       signingIn: false,

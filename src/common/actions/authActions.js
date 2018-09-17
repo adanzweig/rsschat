@@ -119,6 +119,43 @@ export function signIn(user) {
   };
 }
 
+function requestGoogleSignIn() {
+  return {
+    type: types.GOOGLE_AUTH_SIGNIN
+  }
+}
+
+function receiveGoogleSignIn(username) {
+  const user = {
+    name: username,
+    id: Symbol(username)
+  }
+  return {
+    type: types.GOOGLE_AUTH_SIGNIN_SUCCESS,
+    user
+  }
+}
+
+export function signGoogle(user){
+    return dispatch => {
+    dispatch(requestGoogleSignIn())
+     return fetch('/api/google-login', {
+      method: 'post',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+      })
+      .then(response => {
+        if(response.ok) {
+          cookie.save('username', user.username)
+          dispatch(receiveGoogleSignIn(user.username));
+          browserHistory.push('/chat');
+        }
+      })
+      .catch(error => {throw error});
+  };
+}
+
 export function receiveSocket(socketID) {
   return {
     type: types.RECEIVE_SOCKET,
