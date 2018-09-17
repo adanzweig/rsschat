@@ -71,7 +71,7 @@ class WelcomePage extends Component {
           <div className="col-xs-4">
             <GoogleLoginButton 
                   googleClientId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
-                       onLoginSuccess={this.responseGoogle}
+                       onLoginSuccess={::this.responseGoogle}
                        onLoginFailure={() => console.log('Login failed')}
                        width={140}
                         height={40}
@@ -114,7 +114,7 @@ class WelcomePage extends Component {
             <div className="col-xs-4">
               <GoogleLoginButton 
                 googleClientId="344356196520-khjcg06k3rb3d7l2gpma2bobiuf79gnl.apps.googleusercontent.com"
-                     onLoginSuccess={this.responseGoogle}
+                     onLoginSuccess={::this.responseGoogle}
                      onLoginFailure={() => console.log('Login failed')}
                      width={140}
                       height={40}
