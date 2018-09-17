@@ -28,6 +28,7 @@ class WelcomePage extends Component {
     }
   }
   responseGoogle (googleUser) {
+    const { dispatch } = this.props;
     var id_token = googleUser.getAuthResponse().id_token;
     var googleId = googleUser.getId();
     var profile = googleUser.getBasicProfile();
